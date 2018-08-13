@@ -47,6 +47,10 @@
       <HintPath>packages\MahApps.Metro.1.6.5\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MathNet.Numerics.4.5.1\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
       <Private>True</Private>
@@ -71,6 +75,8 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -105,6 +111,21 @@
     <Compile Include="Score.cs" />
     <Compile Include="Serialization\IMatchSerializer.cs" />
     <Compile Include="Serialization\XmlMatchSerializer.cs" />
+    <Compile Include="Statistics\EnumerableExtensions.cs" />
+    <Compile Include="Statistics\IMatchStatistics.cs" />
+    <Compile Include="Statistics\IMatchTransitionStatistics.cs" />
+    <Compile Include="Statistics\Markov.cs" />
+    <Compile Include="Statistics\MatchDynamics.cs" />
+    <Compile Include="Statistics\MatchStatistics.cs" />
+    <Compile Include="Statistics\MatchTransitionStatistics.cs" />
+    <Compile Include="Statistics\PlayerStatistics.cs" />
+    <Compile Include="Statistics\RallyLengthStatistics.cs" />
+    <Compile Include="Statistics\RelevanceOfStroke.cs" />
+    <Compile Include="Statistics\SideStatistics.cs" />
+    <Compile Include="Statistics\SpinStatistics.cs" />
+    <Compile Include="Statistics\TechnicalEfficiency.cs" />
+    <Compile Include="Statistics\TechniqueStatistics.cs" />
+    <Compile Include="Statistics\Transitions.cs" />
     <Compile Include="Stroke.cs" />
     <Compile Include="Util\AsyncXmlSerializer.cs" />
     <Compile Include="Util\EnumExtensions.cs" />
