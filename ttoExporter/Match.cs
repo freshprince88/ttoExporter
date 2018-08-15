@@ -42,9 +42,19 @@ namespace ttoExporter
         private string tournament;
 
         /// <summary>
+        /// Backs the <see cref="Year"/> property.
+        /// </summary>
+        private int year;
+
+        /// <summary>
         /// Backs the <see cref="Category"/> property.
         /// </summary>
         private MatchCategory category = MatchCategory.Category;
+
+        /// <summary>
+        /// Backs the <see cref="Sex"/> property.
+        /// </summary>
+        private MatchSex sex = MatchSex.Sex;
 
 
         /// <summary>
@@ -217,6 +227,17 @@ namespace ttoExporter
         }
 
         /// <summary>
+        /// Gets or sets the year of the tournament.
+        /// </summary>
+        [XmlIgnore]
+        public int Year
+        {
+            get { return this.year; }
+            set { this.year = value; }
+        }
+
+
+        /// <summary>
         /// Gets or sets the Video location the match is part of.
         /// </summary>
         [XmlAttribute]
@@ -236,6 +257,15 @@ namespace ttoExporter
             set { this.RaiseAndSetIfChanged(ref this.category, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the sex of the players.
+        /// </summary>
+        [XmlAttribute]
+        public MatchSex Sex
+        {
+            get { return this.sex; }
+            set { this.sex = value; }
+        }
 
         /// <summary>
         /// Gets or sets the Disability Class of the Players.

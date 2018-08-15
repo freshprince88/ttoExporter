@@ -209,6 +209,26 @@ namespace ttoExporter
 
 
     }
+
+    public enum MatchSex
+    {
+        /// <summary>
+        /// Sex.
+        /// </summary>
+        [Description("Sex")]
+        Sex,
+        /// <summary>
+        /// Male.
+        /// </summary>
+        [Description("Male")]
+        M,
+        /// <summary>
+        /// Female.
+        /// </summary>
+        [Description("Female")]
+        F,
+    }
+
     /// <summary>
     /// The Disability Class.
     /// </summary>
