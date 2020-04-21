@@ -97,10 +97,10 @@ namespace ttoExporter
         /// </summary>
         public Match()
         {
-            if (this.id == null || this.id == Guid.Empty)
-            {
-                this.id = Guid.NewGuid();
-            }
+            //if (this.id == null || this.id == Guid.Empty)
+            //{
+            //    this.id = Guid.NewGuid();
+            //}
             this.tournament = Properties.Resources.tournament_title_default;
             this.playlists.CollectionChanged += this.OnPlaylistsChanged;
             this.rallies.CollectionChanged += this.OnRalliesChanged;
@@ -114,6 +114,8 @@ namespace ttoExporter
         public Guid ID
         {
             get { return this.id; }
+            set { this.RaiseAndSetIfChanged(ref this.id, value); }
+
         }
 
         /// <summary>

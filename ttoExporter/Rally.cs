@@ -89,10 +89,10 @@ namespace ttoExporter
         /// </summary>
         public Rally()
         {
-            if (this.id == null || this.id == Guid.Empty)
-            {
-                this.id = Guid.NewGuid();
-            }
+            //if (this.id == null || this.id == Guid.Empty)
+            //{
+            //    this.id = Guid.NewGuid();
+            //}
             this.schläge.CollectionChanged += this.OnSchlägeChanged;
         }
 

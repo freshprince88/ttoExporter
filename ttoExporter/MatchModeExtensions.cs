@@ -73,6 +73,11 @@ namespace ttoExporter
         [Description("Round of 64")]
         R64,
         /// <summary>
+        /// Round of 128.
+        /// </summary>
+        [Description("Round of 128")]
+        R128,
+        /// <summary>
         /// PreRounds.
         /// </summary>
         [Description("PreRounds")]
