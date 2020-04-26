@@ -220,19 +220,21 @@ namespace ttoExporter
                 RalliesSheet.Cells[1, 3].Value = "Match Competition";
                 RalliesSheet.Cells[1, 4].Value = "Match Category";
                 RalliesSheet.Cells[1, 5].Value = "Sex";
-                RalliesSheet.Cells[1, 6].Value = "Rally # in Match";
-                RalliesSheet.Cells[1, 7].Value = "Rally ID";
-                RalliesSheet.Cells[1, 8].Value = "Winner";
-                RalliesSheet.Cells[1, 9].Value = "Server";
-                RalliesSheet.Cells[1, 10].Value = "Length";
-                RalliesSheet.Cells[1, 11].Value = "Comment";
-                RalliesSheet.Cells[1, 12].Value = "Opening Shot";
-                RalliesSheet.Cells[1, 13].Value = "OS # in Rally";
-                RalliesSheet.Cells[1, 14].Value = "OS Player";
-                RalliesSheet.Cells[1, 15].Value = "OS FH/BH";
-                RalliesSheet.Cells[1, 16].Value = "OS Technique";
-                RalliesSheet.Cells[1, 17].Value = "OS Technique Option";
-                RalliesSheet.Cells[1, 18].Value = "Point of Ball Contact";
+                RalliesSheet.Cells[1, 6].Value = "Category A";
+                RalliesSheet.Cells[1, 7].Value = "Category B";
+                RalliesSheet.Cells[1, 8].Value = "Rally # in Match";
+                RalliesSheet.Cells[1, 9].Value = "Rally ID";
+                RalliesSheet.Cells[1, 10].Value = "Winner";
+                RalliesSheet.Cells[1, 11].Value = "Server";
+                RalliesSheet.Cells[1, 12].Value = "Length";
+                RalliesSheet.Cells[1, 13].Value = "Comment";
+                RalliesSheet.Cells[1, 14].Value = "Opening Shot";
+                RalliesSheet.Cells[1, 15].Value = "OS # in Rally";
+                RalliesSheet.Cells[1, 16].Value = "OS Player";
+                RalliesSheet.Cells[1, 17].Value = "OS FH/BH";
+                RalliesSheet.Cells[1, 18].Value = "OS Technique";
+                RalliesSheet.Cells[1, 19].Value = "OS Technique Option";
+                RalliesSheet.Cells[1, 20].Value = "Point of Ball Contact";
 
 
                 #endregion
@@ -362,12 +364,14 @@ namespace ttoExporter
                         RalliesSheet.Cells[rowIndexRally, 3].Value = value.Category ;
                         RalliesSheet.Cells[rowIndexRally, 4].Value = setMatchCategory(value.FirstPlayer.Rank.Position, value.SecondPlayer.Rank.Position);
                         RalliesSheet.Cells[rowIndexRally, 5].Value = value.Sex;
-                        RalliesSheet.Cells[rowIndexRally, 6].Value = rallyValue.Number;
-                        RalliesSheet.Cells[rowIndexRally, 7].Value = rallyValue.ID;
-                        RalliesSheet.Cells[rowIndexRally, 8].Value = rallyValue.Winner;
-                        RalliesSheet.Cells[rowIndexRally, 9].Value = rallyValue.Server;
-                        RalliesSheet.Cells[rowIndexRally, 10].Value = rallyValue.Length;
-                        RalliesSheet.Cells[rowIndexRally, 11].Value = rallyValue.Comment;
+                        RalliesSheet.Cells[rowIndexRally, 6].Value = setPlayerCategory(value.FirstPlayer.Rank.Position);
+                        RalliesSheet.Cells[rowIndexRally, 7].Value = setPlayerCategory(value.SecondPlayer.Rank.Position);
+                        RalliesSheet.Cells[rowIndexRally, 8].Value = rallyValue.Number;
+                        RalliesSheet.Cells[rowIndexRally, 9].Value = rallyValue.ID;
+                        RalliesSheet.Cells[rowIndexRally, 10].Value = rallyValue.Winner;
+                        RalliesSheet.Cells[rowIndexRally, 11].Value = rallyValue.Server;
+                        RalliesSheet.Cells[rowIndexRally, 12].Value = rallyValue.Length;
+                        RalliesSheet.Cells[rowIndexRally, 13].Value = rallyValue.Comment;
             
 
 
@@ -377,13 +381,13 @@ namespace ttoExporter
                         {
                             if (strokeValue.OpeningShot == true)
                             {
-                                RalliesSheet.Cells[rowIndexRally, 12].Value = strokeValue.OpeningShot;
-                                RalliesSheet.Cells[rowIndexRally, 13].Value = strokeValue.Number;
-                                RalliesSheet.Cells[rowIndexRally, 14].Value = strokeValue.Player;
-                                RalliesSheet.Cells[rowIndexRally, 15].Value = strokeValue.Side;
-                                RalliesSheet.Cells[rowIndexRally, 16].Value = strokeValue.Stroketechnique.Type;
-                                RalliesSheet.Cells[rowIndexRally, 17].Value = strokeValue.Stroketechnique.Option;
-                                RalliesSheet.Cells[rowIndexRally, 18].Value = strokeValue.PointOfContact;
+                                RalliesSheet.Cells[rowIndexRally, 14].Value = strokeValue.OpeningShot;
+                                RalliesSheet.Cells[rowIndexRally, 15].Value = strokeValue.Number;
+                                RalliesSheet.Cells[rowIndexRally, 16].Value = strokeValue.Player;
+                                RalliesSheet.Cells[rowIndexRally, 17].Value = strokeValue.Side;
+                                RalliesSheet.Cells[rowIndexRally, 18].Value = strokeValue.Stroketechnique.Type;
+                                RalliesSheet.Cells[rowIndexRally, 19].Value = strokeValue.Stroketechnique.Option;
+                                RalliesSheet.Cells[rowIndexRally, 20].Value = strokeValue.PointOfContact;
                                 break;
                             }
                             else
@@ -467,6 +471,11 @@ namespace ttoExporter
                 fileNames = fileNames.Concat(Directory.GetFiles(value, "*", SearchOption.AllDirectories).Select(f => System.IO.Path.GetFileName(f)).Where(s => s.EndsWith(".tto", StringComparison.OrdinalIgnoreCase)));
 
             }
+            var sortFiles = fileNamesFullPath.OrderBy(s => s);
+            var sortFilesOnlyNames = fileNames.OrderBy(s => s);
+            fileNames = sortFilesOnlyNames;
+            fileNamesFullPath = sortFiles;
+
             //string completeListOfFiles = string.Join("\n\n", fileNames.ToArray());
             //System.Windows.Forms.MessageBox.Show("Complete list of files:\n" + completeListOfFiles);
 
@@ -676,6 +685,17 @@ namespace ttoExporter
             else
             {
                 return null;
+            }
+        }
+
+        private String setPlayerCategory(int Position)
+        {
+            if (Position <= 50) {
+                return "T50";
+                    }
+            else
+            {
+                return "O50";
             }
         }
 
